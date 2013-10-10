@@ -4,6 +4,9 @@
 #
 #-------------------------------------------------
 
+QWT_ROOT = C:/Qt/Qwt-6.1.0
+include ( $${QWT_ROOT}/features/qwt.prf )
+
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
