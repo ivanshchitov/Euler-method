@@ -3,8 +3,8 @@
 # Project created by QtCreator 2013-10-10T17:57:01
 #
 #-------------------------------------------------
-
-QWT_ROOT = C:/Qt/Qwt-6.1.0
+unix: QWT_ROOT = /usr/local/qwt-6.1.0
+win32: QWT_ROOT = C:/Qt/Qwt-6.1.0
 include ( $${QWT_ROOT}/features/qwt.prf )
 
 QT       += core gui
