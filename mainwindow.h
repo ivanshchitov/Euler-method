@@ -25,6 +25,7 @@ private:
 private:
     void initArrays();
     void initTauComboBox();
+    void initQwtPlot();
 };
 
 #endif // MAINWINDOW_H

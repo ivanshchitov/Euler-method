@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    initQwtPlot();
     initTauComboBox();
     initArrays();
 }
@@ -53,4 +54,10 @@ void MainWindow::initTauComboBox() {
     QStringList tauList;
     tauList << "1" << "0.1" << "0.01" << "0.001" << "0.0001";
     ui->tauComboBox->addItems(tauList);
+}
+
+void MainWindow::initQwtPlot() {
+    ui->qwtPlot->setTitle("Графики траекторий");
+    ui->qwtPlot->setAxisScale(QwtPlot::xBottom, -5, 5);
+    ui->qwtPlot->setAxisScale(QwtPlot::yLeft, -5, 5);
 }
