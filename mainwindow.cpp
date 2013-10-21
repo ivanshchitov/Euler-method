@@ -61,3 +61,14 @@ void MainWindow::initQwtPlot() {
     ui->qwtPlot->setAxisScale(QwtPlot::xBottom, -5, 5);
     ui->qwtPlot->setAxisScale(QwtPlot::yLeft, -5, 5);
 }
+
+double MainWindow::func1(double xn, double yn) {
+    return ui->alphaDoubleSpinBox->value() * xn
+            + ui->betaDoubleSpinBox->value() * yn
+            + ui->epsilonDoubleSpinBox->value();
+}
+
+double MainWindow::func2(double xn) {
+    return ui->lyambdaDoubleSpinBox->value() * xn
+            + ui->fiDoubleSpinBox->value();
+}
