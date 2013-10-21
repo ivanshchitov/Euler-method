@@ -15,3 +15,16 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_enableSizeButton_clicked()
+{
+    ui->qwtPlot->setAxisScale(
+                QwtPlot::xBottom,
+                std::min(ui->aDoubleSpinBox->value(), ui->bDoubleSpinBox->value()),
+                std::max(ui->aDoubleSpinBox->value(), ui->bDoubleSpinBox->value()));
+    ui->qwtPlot->setAxisScale(
+                QwtPlot::yLeft,
+                std::min(ui->cDoubleSpinBox->value(), ui->dDoubleSpinBox->value()),
+                std::max(ui->cDoubleSpinBox->value(), ui->dDoubleSpinBox->value()));
+    ui->qwtPlot->replot();
+}
