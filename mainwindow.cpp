@@ -7,11 +7,11 @@ const int M = 500;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow) {
+    ui(new Ui::MainWindow)
+{
     ui->setupUi(this);
-    QStringList tauList;
-    tauList << "1" << "0.1" << "0.01" << "0.001" << "0.0001";
-    ui->tauComboBox->addItems(tauList);
+    initTauComboBox();
+    initArrays();
 }
 
 MainWindow::~MainWindow() {
@@ -36,15 +36,21 @@ void MainWindow::initArrays() {
     ynPlus = new double* [M];
     ynMinus = new double* [M];
     for (int i = 0; i < M; i++) {
-        xnPlus = new double[NMAX];
+        xnPlus[i] = new double [NMAX];
     }
     for (int i = 0; i < M; i++) {
-        xnMinus = new double[NMAX];
+        xnMinus[i] = new double [NMAX];
     }
     for (int i = 0; i < M; i++) {
-        ynPlus = new double[NMAX];
+        ynPlus[i] = new double [NMAX];
     }
     for (int i = 0; i < M; i++) {
-        ynMinus = new double[NMAX];
+        ynMinus[i] = new double [NMAX];
     }
+}
+
+void MainWindow::initTauComboBox() {
+    QStringList tauList;
+    tauList << "1" << "0.1" << "0.01" << "0.001" << "0.0001";
+    ui->tauComboBox->addItems(tauList);
 }

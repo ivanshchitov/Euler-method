@@ -24,6 +24,7 @@ private:
 
 private:
     void initArrays();
+    void initTauComboBox();
 };
 
 #endif // MAINWINDOW_H
