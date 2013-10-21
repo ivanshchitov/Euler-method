@@ -20,6 +20,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    double **xnPlus, **xnMinus, **ynPlus, **ynMinus;
+
+private:
+    void initArrays();
 };
 
 #endif // MAINWINDOW_H
