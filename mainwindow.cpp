@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     initQwtPlot();
+    initQwtPlotPicker();
     initTauComboBox();
     initArrays();
 }
@@ -60,6 +61,14 @@ void MainWindow::initQwtPlot() {
     ui->qwtPlot->setTitle("Графики траекторий");
     ui->qwtPlot->setAxisScale(QwtPlot::xBottom, -5, 5);
     ui->qwtPlot->setAxisScale(QwtPlot::yLeft, -5, 5);
+}
+
+void MainWindow::initQwtPlotPicker() {
+    picker = new QwtPlotPicker(ui->qwtPlot->canvas());
+    picker->setTrackerMode(QwtPicker::AlwaysOn);
+    picker->setRubberBandPen(QColor(Qt::red));
+    picker->setRubberBand(QwtPicker::NoRubberBand);
+    picker->setMousePattern(QwtPicker::MouseSelect1, Qt::LeftButton);
 }
 
 double MainWindow::func1(double xn, double yn) {

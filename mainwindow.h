@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <qwt_picker.h>
+#include <qwt_plot_picker.h>
 
 namespace Ui {
 class MainWindow;
@@ -21,11 +23,13 @@ private slots:
 private:
     Ui::MainWindow *ui;
     double **xnPlus, **xnMinus, **ynPlus, **ynMinus;
+    QwtPlotPicker *picker;
 
 private:
     void initArrays();
     void initTauComboBox();
     void initQwtPlot();
+    void initQwtPlotPicker();
     double func1(double xn, double yn);
     double func2(double xn);
     void buildTrajectory(int numTraj);
