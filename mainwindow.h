@@ -21,6 +21,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     double **xnPlus, **xnMinus, **ynPlus, **ynMinus;
+    double alpha, beta, epsilon, lyambda, fi;
+    double tau, n;
 
 private:
     void initArrays();
@@ -28,6 +30,7 @@ private:
     void initQwtPlot();
     double func1(double xn, double yn);
     double func2(double xn);
+    void buildTrajectory(int numTraj);
 };
 
 #endif // MAINWINDOW_H

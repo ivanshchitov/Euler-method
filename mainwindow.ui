@@ -22,13 +22,6 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="2">
-         <widget class="QLabel" name="bLabel">
-          <property name="text">
-           <string>B:</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1">
          <widget class="QDoubleSpinBox" name="cDoubleSpinBox">
           <property name="minimum">
@@ -60,8 +53,8 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="aDoubleSpinBox">
+        <item row="1" column="3">
+         <widget class="QDoubleSpinBox" name="dDoubleSpinBox">
           <property name="minimum">
            <double>-100.000000000000000</double>
           </property>
@@ -80,13 +73,20 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="3">
-         <widget class="QDoubleSpinBox" name="dDoubleSpinBox">
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="aDoubleSpinBox">
           <property name="minimum">
            <double>-100.000000000000000</double>
           </property>
           <property name="maximum">
            <double>100.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="bLabel">
+          <property name="text">
+           <string>B:</string>
           </property>
          </widget>
         </item>
