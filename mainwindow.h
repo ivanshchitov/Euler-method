@@ -21,8 +21,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     double **xnPlus, **xnMinus, **ynPlus, **ynMinus;
-    double alpha, beta, epsilon, lyambda, fi;
-    double tau, n;
 
 private:
     void initArrays();
