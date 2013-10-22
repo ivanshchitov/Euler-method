@@ -23,6 +23,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     double **xnPlus, **xnMinus, **ynPlus, **ynMinus;
+    double x0, y0;
     QwtPlotPicker *picker;
 
 private:
