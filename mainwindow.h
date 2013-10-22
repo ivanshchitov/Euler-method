@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <qwt_picker.h>
 #include <qwt_plot_picker.h>
+#include <qwt_picker_machine.h>
+#include <QPointF>
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +21,7 @@ public:
 
 private slots:
     void on_enableSizeButton_clicked();
+    void fixClickedPoint(const QPointF& point);
 
 private:
     Ui::MainWindow *ui;

@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 const int NMAX = 10000;
 const int M = 500;
 
@@ -15,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     initQwtPlotPicker();
     initTauComboBox();
     initArrays();
+    connect(picker, SIGNAL(selected(const QPointF&)),
+            this, SLOT(fixClickedPoint(const QPointF&)));
 }
 
 MainWindow::~MainWindow() {
@@ -69,6 +70,7 @@ void MainWindow::initQwtPlotPicker() {
     picker->setTrackerMode(QwtPicker::AlwaysOn);
     picker->setRubberBandPen(QColor(Qt::red));
     picker->setRubberBand(QwtPicker::NoRubberBand);
+    picker->setStateMachine(new QwtPickerClickPointMachine());
     picker->setMousePattern(QwtPicker::MouseSelect1, Qt::LeftButton);
 }
 
@@ -98,4 +100,11 @@ void MainWindow::buildTrajectory(int idTraj) {
                 - ui->tauComboBox->currentText().toDouble()
                 * func2(xnMinus[idTraj][i -1]);
     }
+}
+
+void MainWindow::fixClickedPoint(const QPointF& point) {
+    xnPlus[countTraj][0] = point.x();
+    xnMinus[countTraj][0] = point.x();
+    ynPlus[countTraj][0] = point.y();
+    ynMinus[countTraj][0] = point.y();
 }
