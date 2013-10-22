@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    countTraj = 0;
     initQwtPlot();
     initQwtPlotPicker();
     initTauComboBox();
