@@ -82,19 +82,19 @@ double MainWindow::func2(double xn) {
             + ui->fiDoubleSpinBox->value();
 }
 
-void MainWindow::buildTrajectory(int numTraj) {
+void MainWindow::buildTrajectory(int idTraj) {
     for (int i = 0; i < ui->nDoubleSpinBox->value(); i++) {
-        xnPlus[numTraj][i] = xnPlus[numTraj][i -1]
+        xnPlus[idTraj][i] = xnPlus[idTraj][i -1]
                 + ui->tauComboBox->currentText().toDouble()
-                * func1(xnPlus[numTraj][i -1], ynPlus[numTraj][i - 1]);
-        xnMinus[numTraj][i] = xnMinus[numTraj][i -1]
+                * func1(xnPlus[idTraj][i -1], ynPlus[idTraj][i - 1]);
+        xnMinus[idTraj][i] = xnMinus[idTraj][i -1]
                 - ui->tauComboBox->currentText().toDouble()
-                * func1(xnMinus[numTraj][i -1], ynMinus[numTraj][i - 1]);
-        ynPlus[numTraj][i] = ynPlus[numTraj][i -1]
+                * func1(xnMinus[idTraj][i -1], ynMinus[idTraj][i - 1]);
+        ynPlus[idTraj][i] = ynPlus[idTraj][i -1]
                 + ui->tauComboBox->currentText().toDouble()
-                * func2(xnPlus[numTraj][i -1]);
-        ynMinus[numTraj][i] = ynMinus[numTraj][i -1]
+                * func2(xnPlus[idTraj][i -1]);
+        ynMinus[idTraj][i] = ynMinus[idTraj][i -1]
                 - ui->tauComboBox->currentText().toDouble()
-                * func2(xnMinus[numTraj][i -1]);
+                * func2(xnMinus[idTraj][i -1]);
     }
 }

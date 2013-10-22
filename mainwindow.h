@@ -32,7 +32,7 @@ private:
     void initQwtPlotPicker();
     double func1(double xn, double yn);
     double func2(double xn);
-    void buildTrajectory(int numTraj);
+    void buildTrajectory(int idTraj);
 };
 
 #endif // MAINWINDOW_H
