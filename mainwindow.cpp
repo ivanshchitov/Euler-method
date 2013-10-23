@@ -61,8 +61,12 @@ void MainWindow::initTauComboBox() {
 
 void MainWindow::initQwtPlot() {
     ui->qwtPlot->setTitle("Графики траекторий");
-    ui->qwtPlot->setAxisScale(QwtPlot::xBottom, -5, 5);
-    ui->qwtPlot->setAxisScale(QwtPlot::yLeft, -5, 5);
+    ui->qwtPlot->setAxisScale(QwtPlot::xBottom,
+                              ui->aDoubleSpinBox->value(),
+                              ui->bDoubleSpinBox->value());
+    ui->qwtPlot->setAxisScale(QwtPlot::yLeft,
+                              ui->cDoubleSpinBox->value(),
+                              ui->dDoubleSpinBox->value());
 }
 
 void MainWindow::initQwtPlotPicker() {
