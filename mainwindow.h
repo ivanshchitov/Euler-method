@@ -23,8 +23,8 @@ public:
 private slots:
     void on_enableSizeButton_clicked();
     void fixClickedPoint(const QPointF& point);
-
     void on_clearButton_clicked();
+    void on_helpButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 const int NMAX = 10000;
 const int M = 500;
@@ -142,4 +143,11 @@ void MainWindow::displayTrajectory(int idTraj) {
 void MainWindow::on_clearButton_clicked() {
     ui->qwtPlot->detachItems(QwtPlotItem::Rtti_PlotCurve);
     ui->qwtPlot->replot();
+}
+
+void MainWindow::on_helpButton_clicked() {
+    QMessageBox::about(this, "Справка", "Это приложение позволяет решать систему ОДУ методом Эйлера.\n"
+                             "Оно рисует траектории численных решений в зависимости от того, какую Вы выбирете "
+                             "начальную точку, параметры функций и размеры рабочей области.\n"
+                             "© ЯрГУ им. П. Г. Демидова, факультет ИВТ, группа ИВТ-41СО, Щитов Иван");
 }
