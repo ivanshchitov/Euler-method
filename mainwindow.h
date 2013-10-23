@@ -24,6 +24,8 @@ private slots:
     void on_enableSizeButton_clicked();
     void fixClickedPoint(const QPointF& point);
 
+    void on_clearButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     double **xnPlus, **xnMinus, **ynPlus, **ynMinus;

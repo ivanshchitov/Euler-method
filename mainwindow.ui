@@ -252,6 +252,13 @@
        </layout>
       </item>
       <item>
+       <widget class="QPushButton" name="clearButton">
+        <property name="text">
+         <string>Очистить</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="helpButton">
         <property name="text">
          <string>Справка</string>

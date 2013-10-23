@@ -137,3 +137,8 @@ void MainWindow::displayTrajectory(int idTraj) {
                            ui->nDoubleSpinBox->value() + 1);
     ui->qwtPlot->replot();
 }
+
+void MainWindow::on_clearButton_clicked() {
+    ui->qwtPlot->detachItems(QwtPlotItem::Rtti_PlotCurve);
+    ui->qwtPlot->replot();
+}
