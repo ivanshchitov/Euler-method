@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initQwtPlot();
     initQwtPlotPicker();
     initTauComboBox();
+    initImageODESystem();
     initArrays();
     setWindowTitle("Решение системы ОДУ методом Эйлера.");
     connect(picker, SIGNAL(selected(const QPointF&)),
@@ -91,6 +92,12 @@ void MainWindow::initCurves() {
     minusCurve->setPen(minusPen);
     plusCurve->attach(ui->qwtPlot);
     minusCurve->attach(ui->qwtPlot);
+}
+
+void MainWindow::initImageODESystem() {
+    QImage *image = new QImage;
+    image->load("://formula.png");
+    ui->imgLabel->setPixmap(QPixmap::fromImage(*image));
 }
 
 double MainWindow::func1(double xn, double yn) {

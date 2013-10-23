@@ -252,6 +252,13 @@
        </layout>
       </item>
       <item>
+       <widget class="QLabel" name="imgLabel">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="clearButton">
         <property name="text">
          <string>Очистить</string>

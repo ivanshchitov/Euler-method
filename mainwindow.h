@@ -40,6 +40,7 @@ private:
     void initQwtPlot();
     void initQwtPlotPicker();
     void initCurves();
+    void initImageODESystem();
     void displayTrajectory(int idTraj);
     double func1(double xn, double yn);
     double func2(double xn);
