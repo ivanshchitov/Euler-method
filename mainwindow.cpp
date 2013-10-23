@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     initQwtPlotPicker();
     initTauComboBox();
     initArrays();
+    setWindowTitle("Решение ОДУ методом Эйлера.");
     connect(picker, SIGNAL(selected(const QPointF&)),
             this, SLOT(fixClickedPoint(const QPointF&)));
 }
