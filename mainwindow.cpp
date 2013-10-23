@@ -78,6 +78,19 @@ void MainWindow::initQwtPlotPicker() {
     picker->setMousePattern(QwtPicker::MouseSelect1, Qt::LeftButton);
 }
 
+void MainWindow::initCurves() {
+    QPen plusPen = QPen(QColor(Qt::red));
+    QPen minusPen = QPen(QColor(Qt::blue));
+    plusCurve = new QwtPlotCurve();
+    minusCurve = new QwtPlotCurve();
+    plusCurve->setRenderHint(QwtPlotItem::RenderAntialiased);
+    minusCurve->setRenderHint(QwtPlotItem::RenderAntialiased);
+    plusCurve->setPen(plusPen);
+    minusCurve->setPen(minusPen);
+    plusCurve->attach(ui->qwtPlot);
+    minusCurve->attach(ui->qwtPlot);
+}
+
 double MainWindow::func1(double xn, double yn) {
     return ui->alphaDoubleSpinBox->value() * xn
             + ui->betaDoubleSpinBox->value() * yn
@@ -90,7 +103,7 @@ double MainWindow::func2(double xn) {
 }
 
 void MainWindow::buildTrajectory(int idTraj) {
-    for (int i = 0; i < ui->nDoubleSpinBox->value(); i++) {
+    for (int i = 1; i <= ui->nDoubleSpinBox->value(); i++) {
         xnPlus[idTraj][i] = xnPlus[idTraj][i -1]
                 + ui->tauComboBox->currentText().toDouble()
                 * func1(xnPlus[idTraj][i -1], ynPlus[idTraj][i - 1]);
@@ -111,4 +124,16 @@ void MainWindow::fixClickedPoint(const QPointF& point) {
     xnMinus[countTraj][0] = point.x();
     ynPlus[countTraj][0] = point.y();
     ynMinus[countTraj][0] = point.y();
+    initCurves();
+    buildTrajectory(countTraj);
+    displayTrajectory(countTraj);
+    countTraj++;
+}
+
+void MainWindow::displayTrajectory(int idTraj) {
+    plusCurve->setSamples(xnPlus[idTraj], ynPlus[idTraj],
+                          ui->nDoubleSpinBox->value() + 1);
+    minusCurve->setSamples(xnMinus[idTraj], ynMinus[idTraj],
+                           ui->nDoubleSpinBox->value() + 1);
+    ui->qwtPlot->replot();
 }
