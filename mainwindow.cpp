@@ -136,8 +136,10 @@ void MainWindow::fixClickedPoint(const QPointF& point) {
     initCurves();
     buildTrajectory(countTraj);
     displayTrajectory(countTraj);
-    setEnabledSpinBoxes(false);
     countTraj++;
+    if (countTraj > 0) {
+        setEnabledSpinBoxes(false);
+    }
 }
 
 void MainWindow::displayTrajectory(int idTraj) {
@@ -151,6 +153,7 @@ void MainWindow::displayTrajectory(int idTraj) {
 void MainWindow::on_clearButton_clicked() {
     ui->qwtPlot->detachItems(QwtPlotItem::Rtti_PlotCurve);
     ui->qwtPlot->replot();
+    countTraj = 0;
     setEnabledSpinBoxes(true);
 }
 
