@@ -1,4 +1,4 @@
-Euler-method
+solving-system-ode
 ============
 
- Численный метод решения систем обыкновенных дифференциальных уравнений
+ A numerical method for solving systems of ordinary differential equations.
