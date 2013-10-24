@@ -136,6 +136,7 @@ void MainWindow::fixClickedPoint(const QPointF& point) {
     initCurves();
     buildTrajectory(countTraj);
     displayTrajectory(countTraj);
+    setEnabledSpinBoxes(false);
     countTraj++;
 }
 
@@ -150,6 +151,7 @@ void MainWindow::displayTrajectory(int idTraj) {
 void MainWindow::on_clearButton_clicked() {
     ui->qwtPlot->detachItems(QwtPlotItem::Rtti_PlotCurve);
     ui->qwtPlot->replot();
+    setEnabledSpinBoxes(true);
 }
 
 void MainWindow::on_helpButton_clicked() {
@@ -157,4 +159,14 @@ void MainWindow::on_helpButton_clicked() {
                              "Оно рисует траектории численных решений в зависимости от того, какую Вы выбирете "
                              "начальную точку, параметры функций и размеры рабочей области.\n"
                              "© ЯрГУ им. П. Г. Демидова, факультет ИВТ, группа ИВТ-41СО, Щитов Иван");
+}
+
+void MainWindow::setEnabledSpinBoxes(bool isEnabled) {
+    ui->alphaDoubleSpinBox->setEnabled(isEnabled);
+    ui->betaDoubleSpinBox->setEnabled(isEnabled);
+    ui->epsilonDoubleSpinBox->setEnabled(isEnabled);
+    ui->lyambdaDoubleSpinBox->setEnabled(isEnabled);
+    ui->fiDoubleSpinBox->setEnabled(isEnabled);
+    ui->nDoubleSpinBox->setEnabled(isEnabled);
+    ui->tauComboBox->setEnabled(isEnabled);
 }
