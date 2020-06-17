@@ -5,6 +5,7 @@
 #-------------------------------------------------
 unix: QWT_ROOT = /usr/local/qwt-6.1.0
 win32: QWT_ROOT = C:/Qt/Qwt-6.1.0
+osx: QWT_ROOT=/usr/local/qwt-6.1.5
 include ( $${QWT_ROOT}/features/qwt.prf )
 
 QT       += core gui
@@ -16,9 +17,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
+        curves.cpp \
         mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    curves.h
 
 FORMS    += mainwindow.ui
 

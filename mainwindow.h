@@ -8,6 +8,8 @@
 #include <qwt_plot_curve.h>
 #include <QPointF>
 
+#include "curves.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -28,14 +30,12 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    double **xnPlus, **xnMinus, **ynPlus, **ynMinus;
-    double x0, y0;
-    int countTraj;
     QwtPlotCurve *plusCurve, *minusCurve;
     QwtPlotPicker *picker;
 
+    Curves curves;
+
 private:
-    void initArrays();
     void initTauComboBox();
     void initQwtPlot();
     void initQwtPlotPicker();
@@ -43,9 +43,6 @@ private:
     void initImageODESystem();
     void setEnabledSpinBoxes(bool isEnabled);
     void displayTrajectory(int idTraj);
-    double func1(double xn, double yn);
-    double func2(double xn);
-    void buildTrajectory(int idTraj);
 };
 
 #endif // MAINWINDOW_H
