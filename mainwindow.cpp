@@ -77,26 +77,26 @@ void MainWindow::initImageODESystem() {
 }
 
 void MainWindow::fixClickedPoint(const QPointF& point) {
-    curves.m_xnPlus[curves.m_count][0] = point.x();
-    curves.m_xnMinus[curves.m_count][0] = point.x();
-    curves.m_ynPlus[curves.m_count][0] = point.y();
-    curves.m_ynMinus[curves.m_count][0] = point.y();
+    curves.xnPlus()[curves.count()][0] = point.x();
+    curves.xnMinus()[curves.count()][0] = point.x();
+    curves.ynPlus()[curves.count()][0] = point.y();
+    curves.ynMinus()[curves.count()][0] = point.y();
     initQwtPlotCurves();
     curves.build(ui->nDoubleSpinBox->value(), ui->tauComboBox->currentText().toDouble(),
                            ui->alphaDoubleSpinBox->value(), ui->betaDoubleSpinBox->value(),
                            ui->epsilonDoubleSpinBox->value(), ui->lyambdaDoubleSpinBox->value(),
                            ui->fiDoubleSpinBox->value());
-    displayCurve(curves.m_count);
-    curves.m_count++;
-    if (curves.m_count > 0) {
+    displayCurve(curves.count());
+    curves.increaseCount();
+    if (curves.count() > 0) {
         setEnabledSpinBoxes(false);
     }
 }
 
 void MainWindow::displayCurve(int curveId) {
-    plusCurve->setSamples(curves.m_xnPlus[curveId], curves.m_ynPlus[curveId],
+    plusCurve->setSamples(curves.xnPlus()[curveId], curves.ynPlus()[curveId],
                           ui->nDoubleSpinBox->value() + 1);
-    minusCurve->setSamples(curves.m_xnMinus[curveId], curves.m_ynMinus[curveId],
+    minusCurve->setSamples(curves.xnMinus()[curveId], curves.ynMinus()[curveId],
                            ui->nDoubleSpinBox->value() + 1);
     ui->qwtPlot->replot();
 }
@@ -104,7 +104,7 @@ void MainWindow::displayCurve(int curveId) {
 void MainWindow::on_clearButton_clicked() {
     ui->qwtPlot->detachItems(QwtPlotItem::Rtti_PlotCurve);
     ui->qwtPlot->replot();
-    curves.m_count = 0;
+    curves.clearCount();
     setEnabledSpinBoxes(true);
 }
 

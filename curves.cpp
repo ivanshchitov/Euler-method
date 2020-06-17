@@ -5,7 +5,7 @@ const int M = 500;
 
 Curves::Curves(QObject *parent) : QObject(parent)
 {
-    m_count = 0;
+    clearCount();
     initArrays();
 }
 
@@ -39,6 +39,41 @@ void Curves::build(double n, double tau, double alpha, double beta,
         m_ynPlus[m_count][i] = m_ynPlus[m_count][i -1] + tau * func2(m_xnPlus[m_count][i -1], lyambda, fi);
         m_ynMinus[m_count][i] = m_ynMinus[m_count][i -1] - tau * func2(m_xnMinus[m_count][i -1], lyambda, fi);
     }
+}
+
+double **Curves::xnPlus()
+{
+    return m_xnPlus;
+}
+
+double **Curves::xnMinus()
+{
+    return m_xnMinus;
+}
+
+double **Curves::ynPlus()
+{
+    return m_ynPlus;
+}
+
+double **Curves::ynMinus()
+{
+    return m_ynMinus;
+}
+
+int Curves::count() const
+{
+    return m_count;
+}
+
+void Curves::increaseCount()
+{
+    m_count++;
+}
+
+void Curves::clearCount()
+{
+    m_count = 0;
 }
 
 double Curves::func1(double xn, double yn, double alpha, double beta, double epsilon)
