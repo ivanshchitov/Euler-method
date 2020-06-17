@@ -36,6 +36,14 @@ private:
     Curves curves;
 
 private:
+    double n() const;
+    double tau() const;
+    double alpha() const;
+    double beta() const;
+    double epsilon() const;
+    double lyambda() const;
+    double fi() const;
+
     void initTauComboBox();
     void initQwtPlot();
     void initQwtPlotPicker();

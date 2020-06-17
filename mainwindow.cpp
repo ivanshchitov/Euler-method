@@ -80,10 +80,7 @@ void MainWindow::initImageODESystem() {
 void MainWindow::fixClickedPoint(const QPointF& point) {
     initQwtPlotCurves();
     curves.setupStartPoints(point.x(), point.y());
-    curves.build(ui->nDoubleSpinBox->value(), ui->tauComboBox->currentText().toDouble(),
-                           ui->alphaDoubleSpinBox->value(), ui->betaDoubleSpinBox->value(),
-                           ui->epsilonDoubleSpinBox->value(), ui->lyambdaDoubleSpinBox->value(),
-                           ui->fiDoubleSpinBox->value());
+    curves.build(n(), tau(), alpha(), beta(), epsilon(), lyambda(), fi());
     displayCurve(curves.count());
     curves.increaseCount();
     if (curves.count() > 0) {
@@ -92,10 +89,8 @@ void MainWindow::fixClickedPoint(const QPointF& point) {
 }
 
 void MainWindow::displayCurve(int curveId) {
-    plusCurve->setSamples(curves.xnPlus()[curveId], curves.ynPlus()[curveId],
-                          ui->nDoubleSpinBox->value() + 1);
-    minusCurve->setSamples(curves.xnMinus()[curveId], curves.ynMinus()[curveId],
-                           ui->nDoubleSpinBox->value() + 1);
+    plusCurve->setSamples(curves.xnPlus()[curveId], curves.ynPlus()[curveId], n() + 1);
+    minusCurve->setSamples(curves.xnMinus()[curveId], curves.ynMinus()[curveId], n() + 1);
     ui->qwtPlot->replot();
 }
 
@@ -110,7 +105,42 @@ void MainWindow::on_helpButton_clicked() {
     QMessageBox::about(this, "Справка", "Это приложение позволяет решать систему ОДУ методом Эйлера.\n"
                              "Оно рисует траектории численных решений в зависимости от того, какую Вы выбирете "
                              "начальную точку, параметры функций и размеры рабочей области.\n"
-                             "© ЯрГУ им. П. Г. Демидова, факультет ИВТ, группа ИВТ-41СО, Щитов Иван");
+                                    "© ЯрГУ им. П. Г. Демидова, факультет ИВТ, группа ИВТ-41СО, Щитов Иван");
+}
+
+double MainWindow::n() const
+{
+    return ui->nDoubleSpinBox->value();
+}
+
+double MainWindow::tau() const
+{
+    return ui->tauComboBox->currentText().toDouble();
+}
+
+double MainWindow::alpha() const
+{
+    return ui->alphaDoubleSpinBox->value();
+}
+
+double MainWindow::beta() const
+{
+    return ui->betaDoubleSpinBox->value();
+}
+
+double MainWindow::epsilon() const
+{
+    return ui->epsilonDoubleSpinBox->value();
+}
+
+double MainWindow::lyambda() const
+{
+    return ui->lyambdaDoubleSpinBox->value();
+}
+
+double MainWindow::fi() const
+{
+    return ui->fiDoubleSpinBox->value();
 }
 
 void MainWindow::setEnabledSpinBoxes(bool isEnabled) {
