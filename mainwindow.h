@@ -40,6 +40,7 @@ private:
     void initQwtPlot();
     void initQwtPlotPicker();
     void initQwtPlotCurves();
+    QwtPlotCurve *createQwtPlotCurve(Qt::GlobalColor color);
     void initImageODESystem();
     void setEnabledSpinBoxes(bool isEnabled);
     void displayCurve(int curveId);

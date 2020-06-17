@@ -58,16 +58,17 @@ void MainWindow::initQwtPlotPicker() {
 }
 
 void MainWindow::initQwtPlotCurves() {
-    QPen plusPen = QPen(QColor(Qt::red));
-    QPen minusPen = QPen(QColor(Qt::blue));
-    plusCurve = new QwtPlotCurve();
-    minusCurve = new QwtPlotCurve();
-    plusCurve->setRenderHint(QwtPlotItem::RenderAntialiased);
-    minusCurve->setRenderHint(QwtPlotItem::RenderAntialiased);
-    plusCurve->setPen(plusPen);
-    minusCurve->setPen(minusPen);
-    plusCurve->attach(ui->qwtPlot);
-    minusCurve->attach(ui->qwtPlot);
+    plusCurve = createQwtPlotCurve(Qt::red);
+    minusCurve = createQwtPlotCurve(Qt::blue);
+}
+
+QwtPlotCurve *MainWindow::createQwtPlotCurve(Qt::GlobalColor color)
+{
+    QwtPlotCurve *curve = new QwtPlotCurve();
+    curve->setRenderHint(QwtPlotItem::RenderAntialiased);
+    curve->setPen(QPen(QColor(color)));
+    curve->attach(ui->qwtPlot);
+    return curve;
 }
 
 void MainWindow::initImageODESystem() {
@@ -77,11 +78,8 @@ void MainWindow::initImageODESystem() {
 }
 
 void MainWindow::fixClickedPoint(const QPointF& point) {
-    curves.xnPlus()[curves.count()][0] = point.x();
-    curves.xnMinus()[curves.count()][0] = point.x();
-    curves.ynPlus()[curves.count()][0] = point.y();
-    curves.ynMinus()[curves.count()][0] = point.y();
     initQwtPlotCurves();
+    curves.setupStartPoints(point.x(), point.y());
     curves.build(ui->nDoubleSpinBox->value(), ui->tauComboBox->currentText().toDouble(),
                            ui->alphaDoubleSpinBox->value(), ui->betaDoubleSpinBox->value(),
                            ui->epsilonDoubleSpinBox->value(), ui->lyambdaDoubleSpinBox->value(),

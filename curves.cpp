@@ -10,22 +10,10 @@ Curves::Curves(QObject *parent) : QObject(parent)
 }
 
 void Curves::initArrays() {
-    m_xnPlus = new double* [M];
-    m_xnMinus = new double* [M];
-    m_ynPlus = new double* [M];
-    m_ynMinus = new double* [M];
-    for (int i = 0; i < M; i++) {
-        m_xnPlus[i] = new double [NMAX];
-    }
-    for (int i = 0; i < M; i++) {
-        m_xnMinus[i] = new double [NMAX];
-    }
-    for (int i = 0; i < M; i++) {
-        m_ynPlus[i] = new double [NMAX];
-    }
-    for (int i = 0; i < M; i++) {
-        m_ynMinus[i] = new double [NMAX];
-    }
+    m_xnPlus = createPointsArray();
+    m_xnMinus = createPointsArray();
+    m_ynPlus = createPointsArray();
+    m_ynMinus = createPointsArray();
 }
 
 void Curves::build(double n, double tau, double alpha, double beta,
@@ -39,6 +27,14 @@ void Curves::build(double n, double tau, double alpha, double beta,
         m_ynPlus[m_count][i] = m_ynPlus[m_count][i -1] + tau * func2(m_xnPlus[m_count][i -1], lyambda, fi);
         m_ynMinus[m_count][i] = m_ynMinus[m_count][i -1] - tau * func2(m_xnMinus[m_count][i -1], lyambda, fi);
     }
+}
+
+void Curves::setupStartPoints(double x, double y)
+{
+    m_xnPlus[m_count][0] = x;
+    m_xnMinus[m_count][0] = x;
+    m_ynPlus[m_count][0] = y;
+    m_ynMinus[m_count][0] = y;
 }
 
 double **Curves::xnPlus()
@@ -74,6 +70,15 @@ void Curves::increaseCount()
 void Curves::clearCount()
 {
     m_count = 0;
+}
+
+double **Curves::createPointsArray()
+{
+    double **points = new double* [M];
+    for (int i = 0; i < M; i++) {
+        points[i] = new double [NMAX];
+    }
+    return points;
 }
 
 double Curves::func1(double xn, double yn, double alpha, double beta, double epsilon)

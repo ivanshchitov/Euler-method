@@ -13,6 +13,7 @@ public:
     void initArrays();
     void build(double n, double tau, double alpha, double beta,
                          double epsilon, double lyambda, double fi);
+    void setupStartPoints(double x, double y);
 
     double **xnPlus();
     double **xnMinus();
@@ -29,6 +30,7 @@ private:
     double **m_ynMinus;
     int m_count;
 
+    double **createPointsArray();
     double func1(double xn, double yn, double alpha, double beta, double epsilon);
     double func2(double xn, double lyambda, double fi);
 };
