@@ -11,11 +11,14 @@ public:
     explicit Curves(QObject *parent = nullptr);
 
     void initArrays();
-    void buildTrajectory(double n, double tau, double alpha, double beta,
+    void build(double n, double tau, double alpha, double beta,
                          double epsilon, double lyambda, double fi);
 
-    double **xnPlus, **xnMinus, **ynPlus, **ynMinus;
-    int countTraj;
+    double **m_xnPlus;
+    double **m_xnMinus;
+    double **m_ynPlus;
+    double **m_ynMinus;
+    int m_count;
 
 private:
 

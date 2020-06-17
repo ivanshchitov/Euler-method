@@ -57,7 +57,7 @@ void MainWindow::initQwtPlotPicker() {
     picker->setMousePattern(QwtPicker::MouseSelect1, Qt::LeftButton);
 }
 
-void MainWindow::initCurves() {
+void MainWindow::initQwtPlotCurves() {
     QPen plusPen = QPen(QColor(Qt::red));
     QPen minusPen = QPen(QColor(Qt::blue));
     plusCurve = new QwtPlotCurve();
@@ -77,26 +77,26 @@ void MainWindow::initImageODESystem() {
 }
 
 void MainWindow::fixClickedPoint(const QPointF& point) {
-    curves.xnPlus[curves.countTraj][0] = point.x();
-    curves.xnMinus[curves.countTraj][0] = point.x();
-    curves.ynPlus[curves.countTraj][0] = point.y();
-    curves.ynMinus[curves.countTraj][0] = point.y();
-    initCurves();
-    curves.buildTrajectory(ui->nDoubleSpinBox->value(), ui->tauComboBox->currentText().toDouble(),
+    curves.m_xnPlus[curves.m_count][0] = point.x();
+    curves.m_xnMinus[curves.m_count][0] = point.x();
+    curves.m_ynPlus[curves.m_count][0] = point.y();
+    curves.m_ynMinus[curves.m_count][0] = point.y();
+    initQwtPlotCurves();
+    curves.build(ui->nDoubleSpinBox->value(), ui->tauComboBox->currentText().toDouble(),
                            ui->alphaDoubleSpinBox->value(), ui->betaDoubleSpinBox->value(),
                            ui->epsilonDoubleSpinBox->value(), ui->lyambdaDoubleSpinBox->value(),
                            ui->fiDoubleSpinBox->value());
-    displayTrajectory(curves.countTraj);
-    curves.countTraj++;
-    if (curves.countTraj > 0) {
+    displayCurve(curves.m_count);
+    curves.m_count++;
+    if (curves.m_count > 0) {
         setEnabledSpinBoxes(false);
     }
 }
 
-void MainWindow::displayTrajectory(int idTraj) {
-    plusCurve->setSamples(curves.xnPlus[idTraj], curves.ynPlus[idTraj],
+void MainWindow::displayCurve(int curveId) {
+    plusCurve->setSamples(curves.m_xnPlus[curveId], curves.m_ynPlus[curveId],
                           ui->nDoubleSpinBox->value() + 1);
-    minusCurve->setSamples(curves.xnMinus[idTraj], curves.ynMinus[idTraj],
+    minusCurve->setSamples(curves.m_xnMinus[curveId], curves.m_ynMinus[curveId],
                            ui->nDoubleSpinBox->value() + 1);
     ui->qwtPlot->replot();
 }
@@ -104,7 +104,7 @@ void MainWindow::displayTrajectory(int idTraj) {
 void MainWindow::on_clearButton_clicked() {
     ui->qwtPlot->detachItems(QwtPlotItem::Rtti_PlotCurve);
     ui->qwtPlot->replot();
-    curves.countTraj = 0;
+    curves.m_count = 0;
     setEnabledSpinBoxes(true);
 }
 

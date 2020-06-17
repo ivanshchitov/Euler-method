@@ -39,10 +39,10 @@ private:
     void initTauComboBox();
     void initQwtPlot();
     void initQwtPlotPicker();
-    void initCurves();
+    void initQwtPlotCurves();
     void initImageODESystem();
     void setEnabledSpinBoxes(bool isEnabled);
-    void displayTrajectory(int idTraj);
+    void displayCurve(int curveId);
 };
 
 #endif // MAINWINDOW_H
